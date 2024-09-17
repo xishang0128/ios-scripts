@@ -1,0 +1,14 @@
+#!name=IP4P
+#!desc=ip4p地址转换
+#!arguments=domain:ip4p.test.com,mitm-url:https?:\/\/ip4p\.test\.com
+
+[Script]
+ip4p_req = type=http-request, pattern={{{mitm-url}}}, script-path=https://raw.githubusercontent.com/xishang0128/ios-scripts/main/surge/ip4p/ip4p_req.js
+
+ip4p_dns = type=dns,script-path=https://raw.githubusercontent.com/xishang0128/ios-scripts/main/surge/ip4p/ip4p_dns.js
+
+[MITM]
+hostname = %APPEND% {{{domain}}}
+
+[Host]
+{{{domain}}} = script:ip4p_dns

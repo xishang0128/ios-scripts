@@ -1,0 +1,1 @@
+$done({ address: $persistentStore.read($domain+"-ip4"), ttl: 60 })
